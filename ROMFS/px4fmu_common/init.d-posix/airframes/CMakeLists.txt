@@ -100,6 +100,7 @@ px4_add_romfs_files(
 	6137_gz_hexa
 
 	8011_gz_omnicopter
+	8012_gz_experimental
 
 	10015_gazebo-classic_iris
 	10016_none_iris
