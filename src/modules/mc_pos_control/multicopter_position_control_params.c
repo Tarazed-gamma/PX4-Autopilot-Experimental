@@ -130,3 +130,11 @@ PARAM_DEFINE_FLOAT(MPC_VEL_NF_BW, 5.0f);
  * @group Multicopter Position Control
  */
 PARAM_DEFINE_FLOAT(MPC_VELD_LP, 5.0f);
+
+/**
+ * Omnicopter mode switch.
+ *
+ * @group Multicopter Position Control
+ * @boolean
+ */
+PARAM_DEFINE_INT32(MPC_OMNI_MODE, 1);

@@ -264,21 +264,17 @@ void PositionControl::getLocalPositionSetpoint(vehicle_local_position_setpoint_s
 	_thr_sp.copyTo(local_position_setpoint.thrust);
 }
 
+
+
 void PositionControl::getAttitudeSetpoint(vehicle_attitude_setpoint_s &attitude_setpoint, bool landed)
 {
-	bool omni_mode = true;
-	if(omni_mode)
-	{
+
 		manual_control_setpoint_s manual_control_setpoint;
 		_manual_control_setpoint_sub.copy(&manual_control_setpoint);
+	
 
-		if (manual_control_setpoint.aux2 > 0.3f) {
-			ControlMath::thrustToAttitude(_thr_sp, _yaw_sp, attitude_setpoint);
-			_roll_angle = 0.f;
-			_pitch_angle = 0.f;
 
-		} 
-		else 
+		if (omni_mode) 
 		{
 
 			if (landed) 
@@ -302,10 +298,13 @@ void PositionControl::getAttitudeSetpoint(vehicle_attitude_setpoint_s &attitude_
 			Vector3f thrust_sp_body = att_sp_dcm.transpose() * _thr_sp;
 			thrust_sp_body.copyTo(attitude_setpoint.thrust_body);
 		}
-	}
-	else
-	{
-		ControlMath::thrustToAttitude(_thr_sp, _yaw_sp, attitude_setpoint);
-		attitude_setpoint.yaw_sp_move_rate = _yawspeed_sp;
-	}
+		else
+		{
+			ControlMath::thrustToAttitude(_thr_sp, _yaw_sp, attitude_setpoint);
+			_roll_angle = 0.f;
+			_pitch_angle = 0.f;
+
+		}
+		
+
 }

@@ -304,6 +304,8 @@ void MulticopterPositionControl::parameters_update(bool force)
 		_takeoff.setSpoolupTime(_param_com_spoolup_time.get());
 		_takeoff.setTakeoffRampTime(_param_mpc_tko_ramp_t.get());
 		_takeoff.generateInitialRampValue(_param_mpc_z_vel_p_acc.get());
+		
+		_control.setOmniMode(_param_mpc_omni_mode.get());
 	}
 }
 

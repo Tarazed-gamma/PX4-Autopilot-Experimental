@@ -47,6 +47,8 @@
 #include <uORB/topics/manual_control_setpoint.h>
 #include <uORB/Subscription.hpp>
 
+
+
 struct PositionControlStates {
 	matrix::Vector3f position;
 	matrix::Vector3f velocity;
@@ -186,6 +188,12 @@ public:
 	 * @param attitude_setpoint reference to struct to fill up
 	 */
 	void getAttitudeSetpoint(vehicle_attitude_setpoint_s &attitude_setpoint, bool landed);
+	
+	void setOmniMode(bool val)
+	{
+		omni_mode = val;
+	}
+		
 
 	/**
 	 * All setpoints are set to NAN (uncontrolled). Timestampt zero.
@@ -239,4 +247,7 @@ private:
 	float _roll_angle{0.f};
 	float _pitch_angle{0.f};
 	float _dt{0.f};
+	
+	bool omni_mode = 1;
+	
 };
